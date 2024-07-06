@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Predictor Aviator</string>
+    <string name="sign_up_txt">Don\'t Have an account?<u><font fgcolor='#C62828'>SignUp</font></u></string>
+    <string name="admin_signup_txt">Are you admin? <u><font fgcolor='#C62828'>SignUp</font></u></string>
+    <string name="login_txt">Already Registered? <u><font fgcolor='#C62828'>Log in Here</font></u></string>
+    <string name="teg_txt">Join our telegram  <u><font fgcolor='#C62828'>https://t.me/nr_devloper</font></u></string>
+    <string name="back_login">Back to  <u><font fgcolor='#C62828'> Login </font></u></string>
+    <string name="view_price_details"><u>View Price Details</u></string>
+    <string name="mid_txt">UPI PIN will keep your account secure from \n unauthorized access. Do not share this PIN with \n anyone.</string>
+    <string name="bank_logo"><u>Bank Name</u></string>
+    <string name="arrow_txt">Your payment will be debit automatically from your UPI app</string>
+    <string-array name="departments_array">
+        <item>Choose your department</item>
+        <item>CST</item>
+        <item>EE</item>
+        <item>ETC</item>
+        <item>EIE</item>
+        <item>CE</item>
+        <item>ARC</item>
+    </string-array>
+</resources>

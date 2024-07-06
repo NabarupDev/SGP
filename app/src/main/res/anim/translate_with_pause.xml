@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Translate animation -->
+    <translate
+        android:duration="4000"
+        android:fromXDelta="100%p"
+        android:toXDelta="0"
+        android:interpolator="@android:anim/linear_interpolator" />
+
+    <!-- Pause animation (hold position) -->
+    <alpha
+        android:duration="3000"
+        android:fromAlpha="1.0"
+        android:toAlpha="1.0"
+        android:startOffset="4000" />
+
+    <!-- Continue translate animation -->
+    <translate
+        android:duration="4000"
+        android:fromXDelta="0"
+        android:toXDelta="-100%p"
+        android:startOffset="7000"
+        android:interpolator="@android:anim/linear_interpolator" />
+</set>

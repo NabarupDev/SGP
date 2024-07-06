@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "65218743745",
+    "firebase_url": "https://college-519f8-default-rtdb.firebaseio.com",
+    "project_id": "college-519f8",
+    "storage_bucket": "college-519f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65218743745:android:f73d743e194e89ba26b340",
+        "android_client_info": {
+          "package_name": "com.nabarup.college"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMV4NebmZySvW3uvNGUaChury4gU3C9yo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

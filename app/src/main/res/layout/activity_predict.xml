@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".Predict">
+
+    <View
+        android:id="@+id/middle"
+        android:layout_width="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_height="1dp"
+        android:textColor="#000000" />
+
+    <View
+        android:id="@+id/middle_hr"
+        android:layout_width="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="match_parent"
+        android:background="#000000" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_above="@+id/middle"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp">
+
+        <View
+            android:id="@+id/middle_rl"
+            android:layout_width="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_height="1dp"
+            android:background="#000000" />
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:src="@drawable/predictor"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/app_name"
+            android:text="Aviator Predictor v4.0"
+            android:textSize="25sp"
+            android:textColor="@color/red"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/middle_rl"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/get_pd_btn"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/red"
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="false"
+            android:layout_below="@id/number_gn"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="31dp"
+            android:layout_marginStart="3dp"
+            android:layout_centerVertical="true"
+            app:cornerRadius="10dp"
+            android:text="Get Prediction!"/>
+
+
+    <Button
+        android:id="@+id/activation_btn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/get_pd_btn"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="31dp"
+        android:backgroundTint="@color/red"
+        android:text="Activate!"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:cornerRadius="10dp" />
+
+
+    <TextView
+        android:id="@+id/number_gn"
+        android:text="1.00x"
+        android:textColor="#FFFFFF"
+        android:textSize="55sp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Activation Code."
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/dialogMessage"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:padding="8dp"
+        android:textColor="#FFFFFF"
+        android:paddingTop="10dp"
+        android:inputType="textPassword"
+        android:drawablePadding="8dp"
+        android:background="@drawable/edit_txt_bg"
+        android:textSize="16sp"
+        android:layout_below="@id/dialogTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/dialogMessage"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:textColor="@android:color/holo_green_dark"
+            android:gravity="center"
+            android:padding="12dp"/>
+        <TextView
+            android:id="@+id/okButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Submit"
+            android:textSize="18sp"
+            android:textColor="#0000FF"
+            android:gravity="center"
+            android:padding="12dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

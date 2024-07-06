@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".Home">
+
+    <RelativeLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:background="#0095FF"
+        android:layout_height="50sp">
+
+
+        <TextView
+            android:text="Welcome Back: !"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topPanel"
+        android:layout_marginTop="20sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp">
+
+
+        <TextView
+            android:id="@+id/uf_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uploaded Files"
+            android:textColor="@android:color/black"
+            android:textSize="17sp" />
+
+        <GridView
+            android:id="@+id/uploadedFilesGridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="3"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:gravity="center"
+            android:layout_below="@id/uf_txt"
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

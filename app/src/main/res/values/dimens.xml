@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spinner_bottom_margin_default">155sp</dimen>
+    <dimen name="spinner_bottom_margin_with_edittext">8dp</dimen> <!-- Adjust this value as needed -->
+
+</resources>

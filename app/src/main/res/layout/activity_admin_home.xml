@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".admin_home">
+
+    <RelativeLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:background="#0095FF"
+        android:layout_height="50sp">
+
+        <TextView
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:text="File Upload"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/upload"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topPanel"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginEnd="30sp"
+        android:background="@drawable/border_shape"
+        android:paddingBottom="30sp">
+
+
+        <ImageView
+            android:id="@+id/cloud_ic"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="20sp"
+            android:src="@drawable/cloud" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cloud_ic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="30sp"
+            android:text="Chose your file here"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <!-- Uploaded Files Section -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/upload"
+        android:layout_marginTop="20sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp">
+
+        <TextView
+            android:id="@+id/uf_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uploaded Files"
+            android:textColor="@android:color/black"
+            android:textSize="17sp" />
+
+        <GridView
+            android:id="@+id/uploadedFilesGridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:padding="16dp"
+            android:clipToPadding="false"
+            android:layout_below="@id/uf_txt" />
+
+        <ProgressBar
+            android:id="@+id/progrssbar"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
