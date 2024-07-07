@@ -92,7 +92,6 @@ public class Sign_up extends AppCompatActivity {
                                             progressBar.setVisibility(View.INVISIBLE);
                                             sign_up_btn.setVisibility(View.VISIBLE);
                                             Toast.makeText(Sign_up.this, "Phone number already registered!", Toast.LENGTH_LONG).show();
-                                            // sign_number.setError("Phone number already registered");
                                         } else {
                                             // Proceed to sign-up
                                             progressBar.setVisibility(View.VISIBLE);
@@ -107,38 +106,55 @@ public class Sign_up extends AppCompatActivity {
                                             FirebaseApp app = FirebaseApp.initializeApp(context, options, FIREBASE_APP_NAME);
                                             database = FirebaseDatabase.getInstance(app);
 
-                                            if ("cst*sgp".equals(activationCode)) {
-                                                reference = database.getReference("users").child("students").child("CST");
-                                            } else if ("ee*sgp".equals(activationCode)) {
-                                                reference = database.getReference("users").child("students").child("EE");
-                                            } else if ("ce*sgp".equals(activationCode)) {
-                                                reference = database.getReference("users").child("students").child("CE");
-                                            } else if ("arc*sgp".equals(activationCode)) {
-                                                reference = database.getReference("users").child("students").child("ARC");
-                                            } else if ("etc*sgp".equals(activationCode)) {
-                                                reference = database.getReference("users").child("students").child("ETC");
-                                            } else if ("eie*sgp".equals(activationCode)) {
-                                                reference = database.getReference("users").child("students").child("EIE");
+                                            // Parse the activation code to extract year and department
+                                            String[] parts = activationCode.split("\\*");
+                                            if (parts.length == 3) {
+                                                String department = parts[0];
+                                                String year = parts[1];
+
+                                                switch (department) {
+                                                    case "cst":
+                                                        reference = database.getReference("users").child("students").child(year).child("CST");
+                                                        break;
+                                                    case "ee":
+                                                        reference = database.getReference("users").child("students").child(year).child("EE");
+                                                        break;
+                                                    case "ce":
+                                                        reference = database.getReference("users").child("students").child(year).child("CE");
+                                                        break;
+                                                    case "arc":
+                                                        reference = database.getReference("users").child("students").child(year).child("ARC");
+                                                        break;
+                                                    case "etc":
+                                                        reference = database.getReference("users").child("students").child(year).child("ETC");
+                                                        break;
+                                                    case "eie":
+                                                        reference = database.getReference("users").child("students").child(year).child("EIE");
+                                                        break;
+                                                    default:
+                                                        reference = database.getReference("users");
+                                                        break;
+                                                }
+
+                                                String name = sign_name.getText().toString();
+                                                String number = sign_number.getText().toString();
+                                                String password = password_edit_box.getText().toString();
+
+                                                String hashedPassword = hashPassword(password);
+
+                                                String uid = reference.push().getKey();
+
+                                                HelperClass helperClass = new HelperClass(name, email, number, hashedPassword);
+
+                                                reference.child(uid).setValue(helperClass);
+
+                                                Toast.makeText(Sign_up.this, "You have signed up successfully!", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(Sign_up.this, Login.class);
+                                                startActivity(intent);
+                                                finish();
                                             } else {
-                                                reference = database.getReference("users");
+                                                Toast.makeText(Sign_up.this, "Invalid activation code format", Toast.LENGTH_SHORT).show();
                                             }
-
-                                            String name = sign_name.getText().toString();
-                                            String number = sign_number.getText().toString();
-                                            String password = password_edit_box.getText().toString();
-
-                                            String hashedPassword = hashPassword(password);
-
-                                            String uid = reference.push().getKey();
-
-                                            HelperClass helperClass = new HelperClass(name, email, number, hashedPassword);
-
-                                            reference.child(uid).setValue(helperClass);
-
-                                            Toast.makeText(Sign_up.this, "You have signed up successfully!", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(Sign_up.this, Login.class);
-                                            startActivity(intent);
-                                            finish();
 
                                             progressBar.setVisibility(View.INVISIBLE);
                                         }
@@ -176,7 +192,6 @@ public class Sign_up extends AppCompatActivity {
         String phone_no = sign_number.getText().toString().trim();
         String password = password_edit_box.getText().toString().trim();
         String activationCode = activation_code.getText().toString().trim();
-
 
         if (TextUtils.isEmpty(name)) {
             sign_name.setError("Name can't be empty");
@@ -221,32 +236,19 @@ public class Sign_up extends AppCompatActivity {
     }
 
     private boolean isValidActivationCode(String activationCode) {
-        // List of valid activation codes
-        String[] validCodes = {"cst*sgp", "ee*sgp", "ce*sgp", "arc*sgp", "etc*sgp", "eie*sgp"};
+        String[] validCodes = {"cst*1st*sgp", "cst*2nd*sgp", "cst*3rd*sgp",
+                "ee*1st*sgp", "ee*2nd*sgp", "ee*3rd*sgp",
+                "ce*1st*sgp", "ce*2nd*sgp", "ce*3rd*sgp",
+                "arc*1st*sgp", "arc*2nd*sgp", "arc*3rd*sgp",
+                "etc*1st*sgp", "etc*2nd*sgp", "etc*3rd*sgp",
+                "eie*1st*sgp", "eie*2nd*sgp", "eie*3rd*sgp"};
 
         for (String code : validCodes) {
             if (activationCode.equals(code)) {
                 return true;
             }
         }
-
         return false;
-    }
-
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        clearEditTextFields();
-    }
-
-    private void clearEditTextFields() {
-        sign_name.setText("");
-        sign_email.setText("");
-        sign_number.setText("");
-        activation_code.setText("");
-        password_edit_box.setText("");
     }
 
     private String hashPassword(String password) {
@@ -256,7 +258,9 @@ public class Sign_up extends AppCompatActivity {
             StringBuilder hexString = new StringBuilder();
             for (byte b : hash) {
                 String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
                 hexString.append(hex);
             }
             return hexString.toString();
@@ -266,25 +270,9 @@ public class Sign_up extends AppCompatActivity {
         }
     }
 
-    private void togglePasswordVisibility() {
-        int inputType = password_edit_box.getInputType();
-        if (inputType == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-            password_edit_box.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            passwordVisibilityToggle.setImageResource(R.drawable.ic_eye);
-        } else {
-            password_edit_box.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordVisibilityToggle.setImageResource(R.drawable.ic_eye_off);
-        }
-        password_edit_box.setSelection(password_edit_box.length());
-    }
-
-    private interface EmailCheckCallback {
-        void onCallback(boolean isEmailRegistered);
-    }
-
     private void isEmailAlreadyRegistered(String email, final EmailCheckCallback callback) {
-        Query emailQuery = FirebaseDatabase.getInstance().getReference("users")
-                .orderByChild("email").equalTo(email);
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+        Query emailQuery = usersRef.orderByChild("email").equalTo(email);
         emailQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -293,19 +281,14 @@ public class Sign_up extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle potential errors
                 callback.onCallback(false);
             }
         });
     }
 
-    private interface PhoneNumberCheckCallback {
-        void onCallback(boolean isPhoneRegistered);
-    }
-
-    private void isPhoneNumberAlreadyRegistered(String phoneNumber, final PhoneNumberCheckCallback callback) {
-        Query phoneQuery = FirebaseDatabase.getInstance().getReference("users")
-                .orderByChild("number").equalTo(phoneNumber);
+    private void isPhoneNumberAlreadyRegistered(String phone_no, final PhoneNumberCheckCallback callback) {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+        Query phoneQuery = usersRef.orderByChild("phone_no").equalTo(phone_no);
         phoneQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -314,9 +297,25 @@ public class Sign_up extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle potential errors
                 callback.onCallback(false);
             }
         });
+    }
+
+    private interface EmailCheckCallback {
+        void onCallback(boolean isEmailRegistered);
+    }
+
+    private interface PhoneNumberCheckCallback {
+        void onCallback(boolean isPhoneRegistered);
+    }
+
+    private void togglePasswordVisibility() {
+        if (password_edit_box.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+            password_edit_box.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        } else {
+            password_edit_box.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+        password_edit_box.setSelection(password_edit_box.length());
     }
 }
