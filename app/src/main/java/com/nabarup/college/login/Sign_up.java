@@ -98,10 +98,11 @@ public class Sign_up extends AppCompatActivity {
                                             sign_up_btn.setVisibility(View.INVISIBLE);
                                             FirebaseOptions options = new FirebaseOptions.Builder()
                                                     .setApplicationId(BuildConfig.APPLICATION_ID)
-                                                    .setApiKey("AIzaSyAfYpssU3DkjCH11hC4dfc22TWwa8bB4yA")
-                                                    .setDatabaseUrl("https://college-519f8-default-rtdb.firebaseio.com/")
-                                                    .setProjectId("college-519f8")
-                                                    .build();
+                                                   .setApiKey("Your_API_Key_Here")
+                                                   .setDatabaseUrl("Your_FIREBASE_DATABASE_URL")
+                                                   .setStorageBucket("Your_FIREBASE_STORAGE_BUCKET")
+                                                   .setProjectId("Your_FIREBASE_PROJECT_ID")
+                                                   .build();
 
                                             FirebaseApp app = FirebaseApp.initializeApp(context, options, FIREBASE_APP_NAME);
                                             database = FirebaseDatabase.getInstance(app);
