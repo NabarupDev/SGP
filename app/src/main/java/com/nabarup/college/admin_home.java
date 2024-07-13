@@ -62,11 +62,11 @@ public class admin_home extends AppCompatActivity {
 
         if (FirebaseApp.getApps(this).isEmpty()) {
             FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setApplicationId("1:65218743745:android:f73d743e194e89ba26b340")
-                    .setApiKey("AIzaSyDMV4NebmZySvW3uvNGUaChury4gU3C9yo")
-                    .setDatabaseUrl("https://college-519f8-default-rtdb.firebaseio.com/")
-                    .setStorageBucket("college-519f8.appspot.com")
-                    .setProjectId("college-519f8")
+                    .setApplicationId("Your_APP_ID_Here")
+                    .setApiKey("Your_API_Key_Here")
+                    .setDatabaseUrl("Your_FIREBASE_DATABASE_URL")
+                    .setStorageBucket("Your_FIREBASE_STORAGE_BUCKET")
+                    .setProjectId("Your_FIREBASE_PROJECT_ID")
                     .build();
             FirebaseApp.initializeApp(this, options);
         }
